@@ -18,9 +18,13 @@ opsd = np.array(opdst["std"])
 be = np.pi/0.67 # unit in um
 pk = 194.-15.
 
-
 def det(z):
     return (z-2.25)/500.# np.sin(np.arctan((z-2.25)/500.))
+
+def sslit(x, d, b, p):
+    return p*(np.sin(be*b*((x-d)/500.)))**2/(be*b*((x-d)/500.))**2
+ssf, sof = curve_fit(sslit, xx, righf, p0=[1.65,100.,47.])
+print ssf
 
 # sin(theta) ~ theta ~ x
 def dos(x, b, d, c):
