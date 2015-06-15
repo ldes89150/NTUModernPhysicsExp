@@ -165,8 +165,8 @@ fito = Scatter(
         dash='solid',
     ),
 )
-# tttt = Data([datao,fito,ttt])
-# layout = Layout(title='test')
-# pt = Figure(data=tttt, layout=layout)
-# py.plot(pt,filename='test',fileopt='new')
+tttt = Data([datao,fito,ttt])
+layout = Layout(title='test')
+pt = Figure(data=tttt, layout=layout)
+py.plot(pt,filename='test',fileopt='new')
 
