@@ -3,13 +3,47 @@ from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 from numpy import genfromtxt
 
-# bdg = np.array(genfromtxt('bulb_double_green.csv', delimiter=','))
-# bdgx = np.array([i for i in range(len(bdg))])
-
-bdg = np.array(genfromtxt('laser_double.csv', delimiter=','))
+bdg = np.array(genfromtxt('bulb_double_green.csv', delimiter=','))
 bdgx = np.array([i for i in range(len(bdg))])
+bdp = np.array(genfromtxt('bulb_double_polarizer.csv', delimiter=','))
+bdpx = np.array([i for i in range(len(bdp))])
+bd = np.array(genfromtxt('bulb_double.csv', delimiter=','))
+bdx = np.array([i for i in range(len(bd))])
+btg = np.array(genfromtxt('bulb_triple_green.csv', delimiter=','))
+btgx = np.array([i for i in range(len(bdg))])
+btp = np.array(genfromtxt('bulb_triple_polarizer.csv', delimiter=','))
+btpx = np.array([i for i in range(len(bdg))])
+bt = np.array(genfromtxt('bulb_triple.csv', delimiter=','))
+btx = np.array([i for i in range(len(bdg))])
 
-plt.plot(bdgx, bdg, 'r')
+hdg = np.array(genfromtxt('hg_double_green.csv', delimiter=','))
+hdgx = np.array([i for i in range(len(hdg))])
+hdp = np.array(genfromtxt('hg_double_polarizer.csv', delimiter=','))
+hdpx = np.array([i for i in range(len(hdg))])
+hd = np.array(genfromtxt('hg_double.csv', delimiter=','))
+hdx = np.array([i for i in range(len(hdg))])
+htg = np.array(genfromtxt('hg_triple_green.csv', delimiter=','))
+htgx = np.array([i for i in range(len(bdg))])
+htp = np.array(genfromtxt('hg_triple_polarizer.csv', delimiter=','))
+htpx = np.array([i for i in range(len(bdg))])
+ht = np.array(genfromtxt('hg_triple.csv', delimiter=','))
+htx = np.array([i for i in range(len(bdg))])
+
+ldg = np.array(genfromtxt('laser_double_green.csv', delimiter=','))
+ldgx = np.array([i for i in range(len(ldg))])
+ldp = np.array(genfromtxt('laser_double_polarizer.csv', delimiter=','))
+ldpx = np.array([i for i in range(len(ldg))])
+ld = np.array(genfromtxt('laser_double.csv', delimiter=','))
+ldx = np.array([i for i in range(len(ldg))])
+ltg = np.array(genfromtxt('laser_triple_green.csv', delimiter=','))
+ltgx = np.array([i for i in range(len(bdg))])
+ltp = np.array(genfromtxt('laser_triple_polarizer.csv', delimiter=','))
+ltpx = np.array([i for i in range(len(bdg))])
+lt = np.array(genfromtxt('laser_triple.csv', delimiter=','))
+ltx = np.array([i for i in range(len(bdg))])
+
+
+# plt.plot(bdgx, bdg, 'r')
 # plt.show()   
 
 
@@ -43,8 +77,8 @@ pkk=19000.
 ofs=364.5
 def paco(x,j,b,d,p,t):
     return p/2.*(1+j*np.cos(2*(x-ofs)*d))*(np.sin((x-ofs)*b))**2/(b*(x-ofs))**2+t
-opf, poo = curve_fit(paco, bdgx, bdg, p0=[0.8,0.008,0.03,18500.,1000.])
-print opf
+# opf, poo = curve_fit(paco, bdgx, bdg, p0=[0.8,0.008,0.03,18500.,1000.])
+# print opf
 
 import scipy.odr as odrr
 def paco(p,x):
@@ -55,8 +89,8 @@ opf = odrr.RealData(bdgx, bdg, sy=[50. for i in range(len(bdg))])
 opr = odrr.ODR(opf, md, beta0=[0.8,0.008,0.03,18500.,1000.])
 
 # opr.run().pprint()
-plt.plot(bdgx, [paco([0.99975,0.0076892,0.028753,18895.93,410.62],bdgx[i]) for i in range(len(bdgx))], 'b')
-plt.show()
+# plt.plot(bdgx, [paco([0.99975,0.0076892,0.028753,18895.93,410.62],bdgx[i]) for i in range(len(bdgx))], 'b')
+# plt.show()
 
 # datao = Scatter(
 #     x=ox,
